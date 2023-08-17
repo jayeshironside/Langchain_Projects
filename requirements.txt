@@ -6,3 +6,4 @@ tiktoken
 streamlit
 python-dotenv
 huggingface_hub
+pandas
