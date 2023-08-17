@@ -24,7 +24,7 @@ our_text = "I love trips, and I have been to 6 countries. I plan to visit few mo
 our_prompt = f"""{our_text} 
 Can you create a post for a tweet in {wordsCount} words or above ?
 """
-print(llm(our_prompt)) # Prints the model output 
+print(llm(our_prompt)) 
 
 #Number-3: Using prompt Template (It keeps the code more neat and clean while solving complex problems)
 template = """"

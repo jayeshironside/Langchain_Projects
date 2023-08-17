@@ -5,8 +5,6 @@ load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 from langchain.llms import OpenAI
-from langchain.prompts import PromptTemplate
-from langchain import FewShotPromptTemplate
 
 # Few Shot Templates
 #Few-shot learning is a way to teach computers to make predictions using only a small amount of information. Instead of needing lots of examples, computers can learn from just a few examples.<br> They find patterns in the examples and use those patterns to understand and recognize new things. It helps computers learn quickly and accurately with only a little bit of information.
@@ -36,6 +34,8 @@ Response: """
 print(llm(our_prompt))
 
 # The FewShotPromptTemplate feature offered by LangChain allows for few-shot learning using prompts. In the context of large language models (LLMs), the primary sources of knowledge are parametric knowledge (learned during model training) and source knowledge (provided within model input at inference time). The FewShotPromptTemplate enables the inclusion of a few examples within prompts, which the model can read and use to apply to user input, enhancing the model's ability to handle specific tasks or scenarios.
+from langchain.prompts import PromptTemplate
+from langchain import FewShotPromptTemplate
 
 examples = [
     {
