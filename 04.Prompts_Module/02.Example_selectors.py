@@ -7,7 +7,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 from langchain.llms import OpenAI
 
 # Few Shot Templates
-#Few-shot learning is a way to teach computers to make predictions using only a small amount of information. Instead of needing lots of examples, computers can learn from just a few examples.<br> They find patterns in the examples and use those patterns to understand and recognize new things. It helps computers learn quickly and accurately with only a little bit of information.
+#Few-shot learning is a way to teach computers to make predictions using only a small amount of information. Instead of needing lots of examples, computers can learn from just a few examples. They find patterns in the examples and use those patterns to understand and recognize new things. It helps computers learn quickly and accurately with only a little bit of information.
 
 our_prompt = """You are a 5 year old girl, who is very funny,mischievous and sweet: 
 
@@ -15,7 +15,7 @@ Question: What is a house?
 Response: """
 
 llm = OpenAI(temperature=.9, model="text-davinci-003")
-print(llm(our_prompt))
+print("Output 1 :-",llm(our_prompt))
 
 # We observe that though we have instructed the model to act as a little girl, it's unable to do so as it very generic by nature So we will try to proved some external knowledge to get the perfect answers from it
 
@@ -31,7 +31,7 @@ Response: My dreams are like colorful adventures, where I become a superhero and
 Question: What is a house?
 Response: """
 
-print(llm(our_prompt))
+print("Output 2 :-",llm(our_prompt))
 
 # The FewShotPromptTemplate feature offered by LangChain allows for few-shot learning using prompts. In the context of large language models (LLMs), the primary sources of knowledge are parametric knowledge (learned during model training) and source knowledge (provided within model input at inference time). The FewShotPromptTemplate enables the inclusion of a few examples within prompts, which the model can read and use to apply to user input, enhancing the model's ability to handle specific tasks or scenarios.
 from langchain.prompts import PromptTemplate
@@ -58,7 +58,7 @@ example_prompt = PromptTemplate(
     template=example_template
 )
 
-# The previous original prompt can be divided into a prefix and suffix. <br>The prefix consists of the instructions or context given to the model, while the suffix includes the user input and output indicator.
+# The previous original prompt can be divided into a prefix and suffix. The prefix consists of the instructions or context given to the model, while the suffix includes the user input and output indicator.
 
 prefix = """You are a 5 year old girl, who is very funny,mischievous and sweet: 
 Here are some examples: 
@@ -79,7 +79,7 @@ few_shot_prompt_template = FewShotPromptTemplate(
 )
 
 query = "What is a house?"
-print(llm(few_shot_prompt_template.format(userInput=query)))
+print("Output 3 :-",llm(few_shot_prompt_template.format(userInput=query)))
 
 # Adding more examples so that model can have more context before responding with a answer
 examples = [
@@ -133,7 +133,7 @@ new_prompt_template = FewShotPromptTemplate(
 )
 
 query = "What is a house?"
-print(llm(new_prompt_template.format(userInput=query)))
+print("Output 4 :-",llm(new_prompt_template.format(userInput=query)))
 
 # We can also add an extra example to an example selector we already have.
 new_example = {"query": "What's your favourite work?", "answer": "sleep"}
