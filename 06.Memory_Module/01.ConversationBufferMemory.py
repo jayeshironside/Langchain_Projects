@@ -41,12 +41,12 @@ conversation = ConversationChain(llm=llm, verbose=True, memory=ConversationBuffe
         # Human: {input}
         # AI:
 
-print(conversation.predict("Good Morning AI !"))
+print(conversation.predict(input="Good Morning AI !"))
         # Current conversation:
         # Human: Good morning AI!
         # AI: Good morning! It's a beautiful day today, isn't it? How can I help you?
 
-print(conversation.predict("My name is Jayesh"))
+print(conversation.predict(input="My name is Jayesh"))
         # Current conversation:
         # Human: Good morning AI!
         # AI:  Good morning! It's a beautiful day today, isn't it? How can I help you?
