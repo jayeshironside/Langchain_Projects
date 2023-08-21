@@ -8,5 +8,4 @@ python-dotenv
 huggingface_hub
 pandas
 streamlit_chat
-chromadb
 sentence_transformers

@@ -11,7 +11,7 @@
 from langchain.document_loaders import TextLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import Chroma
+from langchain.vectorstores import FAISS
 from langchain.chains import RetrievalQA
 from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 
@@ -36,7 +36,16 @@ print(len(texts))
 embeddings = SentenceTransformerEmbeddings(model_name = 'all-MiniLM-L6-v2')
 
 # Vector Stores - Store and Search over embeded data
-    # Load embeddings of text into chroma
-db = Chroma.from_documents(texts, embeddings)
+    # Load embeddings of text into chroma/FAISS
+db = FAISS.from_documents(texts, embeddings)
     # Lets have a look at embeddings - Numeric representation.
-db._collection.get(include=['embeddings'])
+    # db._collection.get(include=['embeddings']) - use this if you use chromadb
+
+
+# Retrievers - Query your data
+retriever = db.as_retriever(search_kwags={"k":1})
+print(retriever)
+
+# Question - 1
+docs = retriever.get_relevant_documents("What is the capital of india ?")
+print(docs)
