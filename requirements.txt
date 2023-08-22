@@ -1,6 +1,7 @@
 langchain
 openai
 PyPDF2
+pypdf
 faiss-cpu
 tiktoken
 streamlit
@@ -9,3 +10,5 @@ huggingface_hub
 pandas
 streamlit_chat
 sentence_transformers
+unstructured
+pinecone-client
