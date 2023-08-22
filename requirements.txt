@@ -9,6 +9,7 @@ python-dotenv
 huggingface_hub
 pandas
 streamlit_chat
+st-chat-message
 sentence_transformers
 unstructured
 pinecone-client

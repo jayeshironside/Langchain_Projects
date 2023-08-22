@@ -48,10 +48,7 @@ def getresponse(userInput, api_key):
     response=st.session_state['conversation'].predict(input=userInput)
     print(st.session_state['conversation'].memory.buffer)
     
-
     return response
-
-
 
 response_container = st.container()
 # Here we will have a container for user input text box
