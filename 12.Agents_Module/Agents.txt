@@ -1,0 +1,14 @@
+# Two types of Agents
+----------------------
+# 1. Action Agents
+# - Received user input
+# - Decides which tool, if any, to use and the tool input
+# - Calls the tool and records the output (Also known as an "Observation")
+# - Decides the next step using the history of tools, tool inputs, and observations.
+# - Repeats 3-4 until it determines it can respond directly to the user
+
+
+# 2. Plan and Execute agents
+# - Received user input
+# - Plans the full sequence of steps to take
+# - Executes the steps in order, passing the outputs of past steps as input to future steps.
