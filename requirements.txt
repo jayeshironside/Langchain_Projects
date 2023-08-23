@@ -13,3 +13,4 @@ st-chat-message
 sentence_transformers
 unstructured
 pinecone-client
+duckduckgo_search
