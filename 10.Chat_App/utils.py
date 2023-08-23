@@ -31,4 +31,3 @@ def log_openai_usage(total_tokens, prompt_tokens, completion_tokens, total_cost)
         writer.writerow([datetime.now().strftime("%d.%m.%Y %H:%M:%S"),
                          total_tokens, prompt_tokens, completion_tokens, total_cost,
                          datetime.now().strftime("%m/%d/%Y")])
-    

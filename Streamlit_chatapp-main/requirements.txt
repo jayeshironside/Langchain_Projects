@@ -1,6 +1,0 @@
-langchain
-streamlit
-python-dotenv
-openai
-st-chat-message
-pandas
