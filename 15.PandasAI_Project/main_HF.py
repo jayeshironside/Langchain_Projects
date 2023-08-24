@@ -8,13 +8,14 @@ from streamlit_extras.add_vertical_space import add_vertical_space
 import pandas as pd
 from pandasai import PandasAI
 from pandasai.llm import OpenAI
+import matplotlib.pyplot as plt
 
 # API Key retrieval
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # Create LLM
 llm = OpenAI(api_token=OPENAI_API_KEY)
-pandas_ai = PandasAI(llm)
+pandas_ai = PandasAI(llm, verbose=True)
 
 st.set_page_config(page_title="Data Analysis Tool", page_icon="🔧")
 st.toast("Upload your CSV file for analysis !", icon='🔧')
@@ -29,9 +30,7 @@ with st.sidebar:
     - ### [Pandas](https://pandas.pydata.org/docs/)
     - ### [PandasAI](https://github.com/gventuri/pandas-ai)
     - ### [OpenAI LLM model](https://platform.openai.com/docs/models)
-
     ''')
-
     add_vertical_space(20)
     st.write('Made with ❤️ by [Jayesh_Ironside](https://github.com/jayeshironside)')
 
@@ -49,4 +48,9 @@ if uploaded_file is not None:
 
     if prompt:
         with st.spinner("Generating you response..."):
-            st.success(pandas_ai.run(df, prompt=prompt))
+            answer = pandas_ai.run(df, prompt=prompt)
+
+            fig = plt.gcf()
+            if fig.get_axes():
+                st.pyplot(fig)
+            st.success(answer)
