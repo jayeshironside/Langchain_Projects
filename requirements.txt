@@ -14,3 +14,4 @@ sentence_transformers
 unstructured
 pinecone-client
 duckduckgo_search
+streamlit_extras
