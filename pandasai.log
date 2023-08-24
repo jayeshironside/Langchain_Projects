@@ -1,0 +1,659 @@
+2023-08-24 15:32:36 [INFO] Question: Plot a bar graph
+2023-08-24 15:32:36 [INFO] Running PandasAI with openai LLM...
+2023-08-24 15:32:36 [INFO] Prompt ID: cbd61b56-d4e5-4240-9268-bd0e0c69594e
+2023-08-24 15:32:56 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    # Assuming the user wants to plot a bar graph using the first dataframe
+    
+    # Prepare
+    df = dfs[0]
+    
+    # Process
+    # Group by JOB_ID and calculate the average SALARY
+    avg_salary_by_job = df.groupby('JOB_ID')['SALARY'].mean()
+    
+    # Analyze
+    # Create a bar plot of average salary by job
+    plt.bar(avg_salary_by_job.index, avg_salary_by_job.values)
+    plt.xlabel('Job ID')
+    plt.ylabel('Average Salary')
+    plt.title('Average Salary by Job')
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    
+    # Output
+    return {"type": "plot", "value": "exports/charts/temp_chart.png"}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-24 15:32:56 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    avg_salary_by_job = df.groupby('JOB_ID')['SALARY'].mean()
+    plt.bar(avg_salary_by_job.index, avg_salary_by_job.values)
+    plt.xlabel('Job ID')
+    plt.ylabel('Average Salary')
+    plt.title('Average Salary by Job')
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-24 15:32:57 [WARNING] Error of executing code
+2023-08-24 15:32:57 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2023-08-24 15:32:57 [INFO] Failed with error: [Errno 2] No such file or directory: 'exports/charts/temp_chart.png'. Retrying
+2023-08-24 15:33:19 [WARNING] Failed to execute code with a correction framework [retry number: 2]
+2023-08-24 15:33:19 [INFO] Failed with error: Generated code includes import of os which is not in whitelist.. Retrying
+2023-08-24 15:33:39 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    avg_salary_by_job = df.groupby('JOB_ID')['SALARY'].mean()
+    plt.bar(avg_salary_by_job.index, avg_salary_by_job.values)
+    plt.xlabel('Job ID')
+    plt.ylabel('Average Salary')
+    plt.title('Average Salary by Job')
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-24 15:33:40 [WARNING] Error of executing code
+2023-08-24 15:34:59 [INFO] Question: how many unique departments are there kindly show it in a plot
+2023-08-24 15:34:59 [INFO] Running PandasAI with openai LLM...
+2023-08-24 15:34:59 [INFO] Prompt ID: 44cf7fc9-3c2c-405f-8ea9-29fd8f4140a8
+2023-08-24 15:35:10 [WARNING] Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002901D09F010>: Failed to resolve 'api.openai.com' ([Errno 11001] getaddrinfo failed)")': /v1/chat/completions
+2023-08-24 15:35:31 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    df = dfs[0]
+    
+    # Count the number of unique departments
+    num_departments = df['DEPARTMENT_ID'].nunique()
+    
+    # Create a bar plot of the unique departments
+    df['DEPARTMENT_ID'].value_counts().plot(kind='bar')
+    plt.xlabel('Department ID')
+    plt.ylabel('Count')
+    plt.title('Number of Employees per Department')
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    
+    # Return the result as a plot
+    return {"type": "plot", "value": "exports/charts/temp_chart.png"}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-24 15:35:31 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    num_departments = df['DEPARTMENT_ID'].nunique()
+    df['DEPARTMENT_ID'].value_counts().plot(kind='bar')
+    plt.xlabel('Department ID')
+    plt.ylabel('Count')
+    plt.title('Number of Employees per Department')
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-24 15:35:31 [WARNING] Error of executing code
+2023-08-24 15:35:31 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2023-08-24 15:35:31 [INFO] Failed with error: [Errno 2] No such file or directory: 'exports/charts/temp_chart.png'. Retrying
+2023-08-24 15:35:50 [WARNING] Failed to execute code with a correction framework [retry number: 2]
+2023-08-24 15:35:50 [INFO] Failed with error: Generated code includes import of os which is not in whitelist.. Retrying
+2023-08-24 15:36:10 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    num_departments = df['DEPARTMENT_ID'].nunique()
+    df['DEPARTMENT_ID'].value_counts().plot(kind='bar')
+    plt.xlabel('Department ID')
+    plt.ylabel('Count')
+    plt.title('Number of Employees per Department')
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-24 15:36:10 [WARNING] Error of executing code
+2023-08-24 15:36:36 [INFO] Question: how many unique departments are there kindly show it in a plot
+2023-08-24 15:36:36 [INFO] Running PandasAI with openai LLM...
+2023-08-24 15:36:36 [INFO] Prompt ID: 01152962-d8fc-4c89-a4df-8d13bc807c99
+2023-08-24 15:36:36 [INFO] Using cached response
+2023-08-24 15:36:36 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    df = dfs[0]
+    
+    # Count the number of unique departments
+    num_departments = df['DEPARTMENT_ID'].nunique()
+    
+    # Create a bar plot of the unique departments
+    df['DEPARTMENT_ID'].value_counts().plot(kind='bar')
+    plt.xlabel('Department ID')
+    plt.ylabel('Count')
+    plt.title('Number of Employees per Department')
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    
+    # Return the result as a plot
+    return {"type": "plot", "value": "exports/charts/temp_chart.png"}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-24 15:36:36 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    num_departments = df['DEPARTMENT_ID'].nunique()
+    df['DEPARTMENT_ID'].value_counts().plot(kind='bar')
+    plt.xlabel('Department ID')
+    plt.ylabel('Count')
+    plt.title('Number of Employees per Department')
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-24 15:36:36 [WARNING] Error of executing code
+2023-08-24 15:36:36 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2023-08-24 15:36:36 [INFO] Failed with error: [Errno 2] No such file or directory: 'exports/charts/temp_chart.png'. Retrying
+2023-08-24 15:38:20 [INFO] Question: How many managers are there ?
+2023-08-24 15:38:20 [INFO] Running PandasAI with openai LLM...
+2023-08-24 15:38:20 [INFO] Prompt ID: e4972819-0454-4c31-9564-55bcb70ef99a
+2023-08-24 15:38:34 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    num_managers = dfs[0]['MANAGER_ID'].nunique()
+    return {"type": "number", "value": num_managers}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-24 15:38:34 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    num_managers = dfs[0]['MANAGER_ID'].nunique()
+    return {'type': 'number', 'value': num_managers}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-24 15:38:34 [INFO] Answer: {'type': 'number', 'value': 14}
+2023-08-24 15:38:34 [INFO] Executed in: 13.738629579544067s
+2023-08-24 15:50:13 [INFO] Question: how many rows are there
+2023-08-24 15:50:13 [INFO] Running PandasAI with openai LLM...
+2023-08-24 15:50:13 [INFO] Prompt ID: d6d879fd-de6e-4bf9-9481-f5b0bd47007d
+2023-08-24 15:50:27 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    num_rows = dfs[0].shape[0]
+    return {"type": "number", "value": num_rows}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-24 15:50:27 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    num_rows = dfs[0].shape[0]
+    return {'type': 'number', 'value': num_rows}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-24 15:50:27 [INFO] Answer: {'type': 'number', 'value': 50}
+2023-08-24 15:50:27 [INFO] Executed in: 13.49958086013794s
+2023-08-24 15:55:27 [INFO] Question: s
+2023-08-24 15:55:27 [INFO] Running PandasAI with openai LLM...
+2023-08-24 15:55:27 [INFO] Prompt ID: f5650287-d8b7-4160-abc6-005b78adc535
+2023-08-24 15:55:44 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    # Prepare: Preprocessing and cleaning data if necessary
+    df = dfs[0]
+    
+    # Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+    df_filtered = df[df['FIRST_NAME'].str.startswith('S')]
+    
+    # Analyze: Conducting the actual analysis
+    result = len(df_filtered)
+    
+    # Output: return a dictionary
+    output = {
+        "type": "number",
+        "value": result
+    }
+    
+    return output
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-24 15:55:44 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    df_filtered = df[df['FIRST_NAME'].str.startswith('S')]
+    result = len(df_filtered)
+    output = {'type': 'number', 'value': result}
+    return output
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-24 15:55:45 [INFO] Answer: {'type': 'number', 'value': 8}
+2023-08-24 15:55:45 [INFO] Executed in: 17.914290189743042s
+2023-08-24 16:38:00 [INFO] Question: Plot the histogram of managers showing for each the salary, using different colors for each bar
+2023-08-24 16:38:00 [INFO] Running PandasAI with starcoder LLM...
+2023-08-24 16:38:00 [INFO] Prompt ID: b1c5e339-ff34-40c6-8c04-58664abc49d9
+2023-08-24 16:40:48 [INFO] Question: how many rows are there?
+2023-08-24 16:40:48 [INFO] Running PandasAI with starcoder LLM...
+2023-08-24 16:40:48 [INFO] Prompt ID: 9680b4e3-a652-4542-b2f3-a9f2e8fbc331
+2023-08-24 16:41:34 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # 1. Prepare: Preprocessing and cleaning data if necessary
+    # TODO: Preprocess and clean the dataframes if necessary
+    # TODO: Remove rows with missing values
+    dfs[0] = dfs[0].dropna()
+
+    # 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+    # TODO: Group the dataframes by department and calculate the average salary
+    df_avg_salary = dfs[0].groupby('DEPARTMENT_ID').agg({'SALARY': 'mean'})
+
+    # 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+    # TODO: Create a bar chart of the average salary by department
+    df_avg_salary.plot(kind='bar', title='Average salary by department')
+    # TODO: Save the chart to an image in exports/charts/temp_chart.png
+    plt.savefig('exports/charts/temp_chart.png')
+
+    # 4. Output: return a dictionary of:
+    # - type (possible values "text", "number", "dataframe", "plot")
+    # - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+    # Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+    return {
+        "type": "plot",
+        "value": "exports/charts/temp_chart.png"
+    }
+                    ```
+                
+2023-08-24 16:41:34 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    dfs[0] = dfs[0].dropna()
+    df_avg_salary = dfs[0].groupby('DEPARTMENT_ID').agg({'SALARY': 'mean'})
+    df_avg_salary.plot(kind='bar', title='Average salary by department')
+    plt.savefig('exports/charts/temp_chart.png')
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+        ```
+2023-08-24 16:41:35 [WARNING] Error of executing code
+2023-08-24 16:41:35 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2023-08-24 16:41:35 [INFO] Failed with error: name 'plt' is not defined. Retrying
+2023-08-24 16:46:13 [INFO] Question: Plot the histogram of countries showing for each the gpd, using different colors for each bar
+2023-08-24 16:46:13 [INFO] Running PandasAI with openai LLM...
+2023-08-24 16:46:13 [INFO] Prompt ID: a4f6c619-213f-4f72-ba2e-8ffad0fe8a48
+2023-08-24 16:46:30 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    df = dfs[0]
+    df.plot(kind='bar', x='country', y='gdp', color='g')
+    plt.xlabel('Country')
+    plt.ylabel('GDP')
+    plt.title('GDP by Country')
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    
+    return {"type": "plot", "value": "exports/charts/temp_chart.png"}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-24 16:46:30 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    df.plot(kind='bar', x='country', y='gdp', color='g')
+    plt.xlabel('Country')
+    plt.ylabel('GDP')
+    plt.title('GDP by Country')
+    plt.savefig('exports/charts/temp_chart.png')
+    plt.close()
+    return {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-24 16:46:32 [INFO] Answer: {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2023-08-24 16:46:32 [INFO] Executed in: 18.40885090827942s
+2023-08-24 17:08:02 [INFO] Question: who is getting hoghest salary
+2023-08-24 17:08:02 [INFO] Running PandasAI with openai LLM...
+2023-08-24 17:08:02 [INFO] Prompt ID: f28ec832-6f1d-4824-a944-af9b53e74949
+2023-08-24 17:08:22 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Get the dataframe with employee information
+    df = dfs[0]
+    
+    # Find the employee with the highest salary
+    highest_salary_employee = df[df['SALARY'] == df['SALARY'].max()]
+    
+    # Get the employee's name
+    first_name = highest_salary_employee['FIRST_NAME'].values[0]
+    last_name = highest_salary_employee['LAST_NAME'].values[0]
+    
+    # Prepare the output message
+    output_message = f"The employee with the highest salary is {first_name} {last_name}."
+    
+    # Return the result as a text
+    return {"type": "text", "value": output_message}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-24 17:08:22 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    highest_salary_employee = df[df['SALARY'] == df['SALARY'].max()]
+    first_name = highest_salary_employee['FIRST_NAME'].values[0]
+    last_name = highest_salary_employee['LAST_NAME'].values[0]
+    output_message = f'The employee with the highest salary is {first_name} {last_name}.'
+    return {'type': 'text', 'value': output_message}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-24 17:08:22 [INFO] Answer: {'type': 'text', 'value': 'The employee with the highest salary is Steven King.'}
+2023-08-24 17:08:22 [INFO] Executed in: 19.783926725387573s
+2023-08-24 17:41:52 [INFO] Question: number of rows
+2023-08-24 17:41:52 [INFO] Running PandasAI with openai LLM...
+2023-08-24 17:41:52 [INFO] Prompt ID: 57a2e594-5cdc-4a2c-bae2-3da31817df9a
+2023-08-24 17:43:08 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    num_rows = dfs[0].shape[0]
+    return {"type": "number", "value": num_rows}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-24 17:43:08 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    num_rows = dfs[0].shape[0]
+    return {'type': 'number', 'value': num_rows}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-24 17:43:08 [INFO] Answer: {'type': 'number', 'value': 50}
+2023-08-24 17:43:08 [INFO] Executed in: 76.62604546546936s
+2023-08-24 17:43:52 [INFO] Question: What is the average salary of employees
+2023-08-24 17:43:52 [INFO] Running PandasAI with openai LLM...
+2023-08-24 17:43:52 [INFO] Prompt ID: a4be0cdd-f5ad-4f66-b963-74bdde35656a
+2023-08-24 17:44:17 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Process: Calculate the average salary of employees
+    average_salary = dfs[0]['SALARY'].mean()
+    
+    # Output: Return the average salary as a number
+    return {"type": "number", "value": average_salary}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-24 17:44:17 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    average_salary = dfs[0]['SALARY'].mean()
+    return {'type': 'number', 'value': average_salary}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-24 17:44:17 [INFO] Answer: {'type': 'number', 'value': 6182.32}
+2023-08-24 17:44:17 [INFO] Executed in: 24.56682777404785s
+2023-08-24 17:44:29 [INFO] Question: which employee gets the highest salary
+2023-08-24 17:44:29 [INFO] Running PandasAI with openai LLM...
+2023-08-24 17:44:29 [INFO] Prompt ID: 5c870b1b-9dc7-45db-ac47-e7cf4dafff2f
+2023-08-24 17:44:57 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Get the first dataframe from the list
+    df = dfs[0]
+    
+    # Find the employee with the highest salary
+    highest_salary_employee = df.loc[df['SALARY'].idxmax()]
+    
+    # Extract the employee's information
+    employee_id = highest_salary_employee['EMPLOYEE_ID']
+    first_name = highest_salary_employee['FIRST_NAME']
+    last_name = highest_salary_employee['LAST_NAME']
+    salary = highest_salary_employee['SALARY']
+    
+    # Prepare the output message
+    output_message = f"The employee with the highest salary is {first_name} {last_name} (Employee ID: {employee_id}) with a salary of ${salary}."
+    
+    # Return the output message
+    return {"type": "text", "value": output_message}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-24 17:44:58 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    highest_salary_employee = df.loc[df['SALARY'].idxmax()]
+    employee_id = highest_salary_employee['EMPLOYEE_ID']
+    first_name = highest_salary_employee['FIRST_NAME']
+    last_name = highest_salary_employee['LAST_NAME']
+    salary = highest_salary_employee['SALARY']
+    output_message = f'The employee with the highest salary is {first_name} {last_name} (Employee ID: {employee_id}) with a salary of ${salary}.'
+    return {'type': 'text', 'value': output_message}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-24 17:44:58 [INFO] Answer: {'type': 'text', 'value': 'The employee with the highest salary is Steven King (Employee ID: 100) with a salary of $24000.'}
+2023-08-24 17:44:58 [INFO] Executed in: 28.192134141921997s
