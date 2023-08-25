@@ -1,19 +1,18 @@
 # Import Libraries
 import os
 from dotenv import load_dotenv
-load_dotenv()
 import streamlit as st
 from streamlit_extras.add_vertical_space import add_vertical_space
 import pandas as pd
 from pandasai import PandasAI
+from pandasai import SmartDataframe
+from pandasai.middlewares import StreamlitMiddleware
 from pandasai.llm import OpenAI
+import matplotlib.pyplot as plt
 
 # API Key retrieval
+load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-
-# Create LLM
-llm = OpenAI(api_token=OPENAI_API_KEY)
-pandas_ai = PandasAI(llm)
 
 st.set_page_config(page_title="Data Analysis Tool", page_icon="🔧")
 
@@ -38,11 +37,18 @@ st.title("Prompt-driven analysis tool 🔧")
 uploaded_file = st.file_uploader("Upload a CSV file for analysis", type=['csv'])
 
 if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-    st.write(df.head(3))
+    data = pd.read_csv(uploaded_file, encoding='Latin-1')
+    df = SmartDataframe(data, {"middlewares": [StreamlitMiddleware()]})
+    st.write(data.head(3))
     st.write("Rows x Column :", df.shape)
 
     prompt = st.chat_input("Enter your prompt here...")
     if prompt:
         with st.spinner("Generating you response..."):
-            st.write(pandas_ai.run(df, prompt=prompt))
+            llm = OpenAI(api_token=OPENAI_API_KEY)
+            pandas_ai = PandasAI(llm, verbose=True)
+            x = pandas_ai.run(df, prompt=prompt)
+            fig = plt.gcf()
+            if fig.get_axes():
+                st.pyplot(fig)
+            st.write("👉 Generated Response :", x)
