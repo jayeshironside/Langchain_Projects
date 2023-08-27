@@ -15,7 +15,7 @@ Here's a glimpse of the projects covered in this course:
 - Dynamic Question-Answering App: Utilize LangChain, OpenAI, and Hugging Face to construct a powerful question-answering application.
 - Conversational Bot: Develop an engaging bot using LangChain and OpenAI to deliver interactive user experiences.
 - Child-Friendly AI App: Create an AI app tailored for children, fostering educational growth through object discovery.
-- Marketing Campaign App: Build a captivating app that employs persuasive copy to boost sales and brand reach.
+- Marketing Campaign App: Build a captivating app that employees persuasive copy to boost sales and brand reach.
 - ... (Several other projects not listed here)
 
 ## Course Contents
