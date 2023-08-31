@@ -1,0 +1,145 @@
+2023-08-31 14:20:46 [INFO] Question: Which are the 5 happiest countries?
+2023-08-31 14:20:46 [INFO] Running PandasAI with openai LLM...
+2023-08-31 14:20:46 [INFO] Prompt ID: e1d67389-59ec-487e-82e1-ffeea0d2681a
+2023-08-31 14:21:41 [INFO] Question: Which are the 5 happiest countries?
+2023-08-31 14:21:41 [INFO] Running PandasAI with openai LLM...
+2023-08-31 14:21:41 [INFO] Prompt ID: bed81c12-b2ef-4f54-b951-9e4c0bc23fb4
+2023-08-31 14:22:13 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    # 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+    # Filter the dataframe to include only the columns 'country' and 'happiness_index'
+    df = dfs[0][['country', 'happiness_index']]
+    
+    # Sort the dataframe by 'happiness_index' in descending order
+    df_sorted = df.sort_values(by='happiness_index', ascending=False)
+    
+    # Select the top 5 happiest countries
+    top_5_happiest_countries = df_sorted.head(5)
+    
+    # 4. Output: return a dictionary of:
+    # - type (possible values "text", "number", "dataframe", "plot")
+    # - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+    return {"type": "dataframe", "value": top_5_happiest_countries}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-31 14:22:13 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0][['country', 'happiness_index']]
+    df_sorted = df.sort_values(by='happiness_index', ascending=False)
+    top_5_happiest_countries = df_sorted.head(5)
+    return {'type': 'dataframe', 'value': top_5_happiest_countries}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-31 14:22:13 [INFO] Answer: {'type': 'dataframe', 'value':           country  happiness_index
+6          Canada             7.23
+7       Australia             7.22
+1  United Kingdom             7.16
+3         Germany             7.07
+0   United States             6.94}
+2023-08-31 14:22:13 [INFO] Executed in: 32.65394186973572s
+2023-08-31 14:22:56 [INFO] Question: Plot a bar chart of gdp and happines index of each country
+2023-08-31 14:22:56 [INFO] Running PandasAI with openai LLM...
+2023-08-31 14:22:56 [INFO] Prompt ID: 091fa07a-9af8-4781-9c2c-6dfbd4bc61e1
+2023-08-31 14:23:23 [INFO] 
+                    Code generated:
+                    ```
+                    # TODO import all the dependencies required
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Analyze the data
+# 1. Prepare: Preprocessing and cleaning data if necessary
+# 2. Process: Manipulating data for analysis (grouping, filtering, aggregating, etc.)
+# 3. Analyze: Conducting the actual analysis (if the user asks to create a chart save it to an image in exports/charts/temp_chart.png and do not show the chart.)
+# 4. Output: return a dictionary of:
+# - type (possible values "text", "number", "dataframe", "plot")
+# - value (can be a string, a dataframe or the path of the plot, NOT a dictionary)
+# Example output: { "type": "text", "value": "The average loan amount is $15,000." }
+def analyze_data(dfs: list[pd.DataFrame]) -> dict:
+    # Code goes here (do not add comments)
+    df = dfs[0]
+    
+    # Plotting a bar chart of gdp and happiness index
+    fig, ax = plt.subplots()
+    df.plot(x='country', y=['gdp', 'happiness_index'], kind='bar', ax=ax)
+    ax.set_xlabel('Country')
+    ax.set_ylabel('Value')
+    ax.set_title('GDP and Happiness Index by Country')
+    plt.xticks(rotation=45)
+    
+    # Save the chart to an image file
+    chart_path = 'exports/charts/temp_chart.png'
+    plt.savefig(chart_path)
+    plt.close(fig)
+    
+    return {"type": "plot", "value": chart_path}
+
+# Declare a result variable
+result = analyze_data(dfs)
+                    ```
+                
+2023-08-31 14:23:23 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    fig, ax = plt.subplots()
+    df.plot(x='country', y=['gdp', 'happiness_index'], kind='bar', ax=ax)
+    ax.set_xlabel('Country')
+    ax.set_ylabel('Value')
+    ax.set_title('GDP and Happiness Index by Country')
+    plt.xticks(rotation=45)
+    chart_path = 'exports/charts/temp_chart.png'
+    plt.savefig(chart_path)
+    plt.close(fig)
+    return {'type': 'plot', 'value': chart_path}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-31 14:23:24 [WARNING] Error of executing code
+2023-08-31 14:23:25 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2023-08-31 14:23:25 [INFO] Failed with error: [Errno 2] No such file or directory: 'exports/charts/temp_chart.png'. Retrying
+2023-08-31 14:23:54 [WARNING] Failed to execute code with a correction framework [retry number: 2]
+2023-08-31 14:23:54 [INFO] Failed with error: Generated code includes import of os which is not in whitelist.. Retrying
+2023-08-31 14:24:21 [INFO] 
+Code running:
+```
+def analyze_data(dfs: list[pd.DataFrame]) ->dict:
+    df = dfs[0]
+    fig, ax = plt.subplots()
+    df.plot(x='country', y=['gdp', 'happiness_index'], kind='bar', ax=ax)
+    ax.set_xlabel('Country')
+    ax.set_ylabel('Value')
+    ax.set_title('GDP and Happiness Index by Country')
+    plt.xticks(rotation=45)
+    chart_path = 'exports/charts/temp_chart.png'
+    plt.savefig(chart_path)
+    plt.close(fig)
+    return {'type': 'plot', 'value': chart_path}
+
+
+result = analyze_data(dfs)
+        ```
+2023-08-31 14:24:21 [WARNING] Error of executing code
